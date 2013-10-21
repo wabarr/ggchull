@@ -1,4 +1,4 @@
 ggchull
 =======
 
-creates convex hulls around points in ggplot2
+R function to create convex hulls around points in ggplot2
