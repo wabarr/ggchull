@@ -1,9 +1,10 @@
 ####function to take a dataframe, x and y variables and
-####optional grouping variable and draw convex hulls in ggplot
+####optional grouping variable and returns object with 
+####convex hulls that can be added to ggplot
+require(plyr)
+require(ggplot2)
 
 ggchull <- function (df,x,y,grouping=NULL) {
-  require(plyr)
-  require(ggplot2)
   
   compute_hull <- function(df) { 
     ##helper function to compute convex hull

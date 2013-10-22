@@ -1,0 +1,11 @@
+#be sure to source chull.R first before trying this
+
+require(ggplot2)
+
+test_df <- data.frame(
+      x=c(rnorm(50,1),rnorm(50,10)),
+      y=c(rnorm(50,1),rnorm(50,10)),
+      grouping=c(rep("A",50),rep("B",50))
+      )
+
+qplot(x,y,data=test_df) + ggchull(test_df,"x","y","grouping")
