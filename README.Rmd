@@ -1,6 +1,9 @@
-ggchull example
+ggchull
 ========================================================
-```{r fig.width=10, fig.height=10}
+
+### R function to add convex hulls to scatterplot in ggplot2, with optional grouping variable
+
+```{r fig.width=10, fig.height=10, warning=FALSE}
 source("ggchull.R")
 
 require(ggplot2)
