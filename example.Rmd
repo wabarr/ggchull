@@ -1,4 +1,7 @@
-#be sure to source chull.R first before trying this
+ggchull example
+========================================================
+```{r fig.width=10, fig.height=10}
+source("ggchull.R")
 
 require(ggplot2)
 
@@ -9,3 +12,5 @@ test_df <- data.frame(
       )
 
 qplot(x,y,data=test_df) + ggchull(test_df,"x","y","grouping")
+
+```
