@@ -1,7 +1,7 @@
 ggchull
 ========================================================
 
-### R function to add convex hulls to scatterplot in ggplot2, with optional grouping variable
+### R function to add convex hulls (i.e. minimum convex polygons) to scatterplot in ggplot2, with optional grouping variable
 
 ```{r fig.width=10, fig.height=10, warning=FALSE}
 source("ggchull.R")
