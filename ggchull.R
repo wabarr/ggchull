@@ -1,28 +1,22 @@
-####function to take x and y vectors and
-#### grouping factor and return object with 
-####convex hulls that can be added to ggplot object
+##note...this is straight outta the vignette
+##https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html
 
-require(plyr)
-require(ggplot2)
+library(ggplot2)
 
-ggchull <- function (x,y,grouping) {
-  
-    
-  theDataFrame <- data.frame(x=x,y=y,grouping=grouping)
-  theDataFrame <- data.frame(theDataFrame[complete.cases(theDataFrame),])
-  theDataFrame$grouping <- as.factor(theDataFrame$grouping)
-  
-  compute_hull <- function(df) { 
-    ##helper function to compute convex hull
-    df[chull(df$x, df$y),]
-  }
-  
-    
-    hulls <- ddply(theDataFrame, "grouping", compute_hull)
-  
-  return( 
-        geom_polygon(data=hulls,aes(group=grouping,fill=grouping),alpha=I(.3))
-        )
-  
+StatChull <- ggproto("StatChull", Stat,
+                     compute_group = function(data, scales) {
+                       data[chull(data$x, data$y), , drop = FALSE]
+                     },
+                     
+                     required_aes = c("x", "y")
+)
+
+stat_chull <- function(mapping = NULL, data = NULL, geom = "polygon",
+                       position = "identity", na.rm = FALSE, show.legend = NA, 
+                       inherit.aes = TRUE, ...) {
+  layer(
+    stat = StatChull, data = data, mapping = mapping, geom = geom, 
+    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    params = list(na.rm = na.rm, ...)
+  )
 }
-
