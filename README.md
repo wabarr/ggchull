@@ -10,13 +10,13 @@ source("ggchull.R")
 
 require(ggplot2)
 
-test_df <- data.frame(
+example_dataframe <- data.frame(
       x=c(rnorm(50,1),rnorm(50,10), rnorm(50,10)),
       y=c(rnorm(50,1),rnorm(50,10), rnorm(50,20)),
       grouping=rep(c("A","B","C"), each=50)
       )
 
-qplot(x, y, data = test_df) + 
+qplot(x, y, data = example_dataframe) + 
   stat_chull(mapping=aes(fill=grouping), alpha=0.5) + 
   theme_bw(20)
 ```
